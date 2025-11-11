@@ -58,13 +58,24 @@ if show_cluster:
 else:
     for p in places:
         popup_html = f"<b>{p['name']}</b><br>{p['desc']}"
-        folium.CircleMarker(location=[p['lat'], p['lon']], radius=6, popup=popup_html, tooltip=p['name'], fill=True).add_to(m)
+        folium.CircleMarker(color='blue', fill_color='blue', location=[p['lat'], p['lon']], radius=6, popup=popup_html, tooltip=p['name'], fill=True).add_to(m)
 
 # 지도를 화면에 표시 (streamlit_folium 사용)
-st.subheader("지도")
-map_data = st_folium(m, width=900, height=600)
+st.subheader("지도 (80% 크기)")
+map_data = st_folium(m, width=720, height=600)
 
 # 우측 컬럼에 장소 목록
+st.markdown("### 서울 TOP10 관광지 간단 소개
+1. 경복궁 — 조선 시대의 대표 궁궐로 아름다운 건축미를 자랑함
+2. 창덕궁 — 자연과 조화를 이룬 세계문화유산
+3. 북촌한옥마을 — 전통 한옥 보존 지역
+4. 인사동 — 한국 전통 예술과 문화 거리
+5. 명동 — 외국인 쇼핑 1번지
+6. 남산서울타워 — 서울 전망대 명소
+7. 동대문디자인플라자 — 미래형 디자인 랜드마크
+8. 홍대 — 젊음, 예술, 자유 분위기 거리
+9. 롯데월드타워 — 초고층 전망대와 복합 문화공간
+10. 이태원 — 다양한 국가 문화가 공존하는 글로벌 거리")
 with st.expander("▶ 관광지 목록 (클릭하면 위치가 하이라이트 됩니다)"):
     for i, p in enumerate(places, start=1):
         st.markdown(f"**{i}. {p['name']}** — {p['desc']}  ")
