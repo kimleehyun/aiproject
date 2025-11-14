@@ -104,7 +104,3 @@ if uploaded is not None:
 
 else:
     st.info("CSV 파일을 업로드하면 두 탭 모두 활성화됩니다!")
-
-    st.plotly_chart(fig, use_container_width=True)
-else:
-    st.info("CSV 파일을 업로드하면 그래프가 표시됩니다.")
