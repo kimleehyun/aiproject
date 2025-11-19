@@ -32,8 +32,14 @@ crime_df = pd.DataFrame({
     "비율": df[selected_region]
 }).sort_values("비율", ascending=False)
 
-# 🔹 색상 구성: 1등 빨간색, 나머지 그라데이션
-colors = ["red"] + px.colors.sequential.Blues[len(crime_df)-1]
+# 🔹 색상 구성: 1등은 빨강 + 나머지 블루 그라데이션 (자동 확장)
+base_colors = px.colors.sequential.Blues
+needed = len(crime_df) - 1
+
+# 색 개수가 부족하면 반복해서 색 리스트 늘리기
+expanded_colors = (base_colors * ((needed // len(base_colors)) + 1))[:needed]
+
+colors = ["red"] + expanded_colors
 
 # 🔹 인터랙티브 그래프 생성
 fig = go.Figure([
