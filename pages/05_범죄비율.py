@@ -1,3 +1,8 @@
+import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
+import plotly.express as px
+
 # 기본 설정
 st.set_page_config(page_title="범죄 데이터 분석", layout="wide")
 
